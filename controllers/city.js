@@ -26,8 +26,10 @@ const controller = {
         }
     },
     read: async(req,res)=>{
+        let {query} = req
+        console.log(query);
         try{
-            let todos = await City.find()
+            let todos = await City.find(query)
             res.status(200).json({
                 response:todos,
                 success:true,
