@@ -1,52 +1,57 @@
-let users = [
-    {
-     
-        name: 'Ignacio',
-        lastName: 'Borraz',
-        photo: "https://media-exp1.licdn.com/dms/image/C4D03AQFvfAF10trKWg/profile-displayphoto-shrink_200_200/0/1637173137697?e=2147483647&v=beta&t=kMBjsE5A5-RY5PNJNoRR5nGd9pJCjbKuojBSTUB1bsw",
-        age: 32,
-        email: 'ignacioborraz@hotmail.com',
-        password: 'Hola1234',
-        code: 32,//'cualquier-codigo-aleatorio'
-        verified: true,
-        logged: true,
-    },
-    {
-   
-        name: 'Lionel',
-        lastName: 'Messi',
-        photo: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Lionel_Messi_20180626_%28cropped%29.jpg',
-        age: 35,
-        email: 'leomessi10@hotmail.com',
-        password: 'thiagociromateo',
-        code: 10,
-        verified: true,
-        logged: true,
-    },
-    {
-   
-        name: 'Anne',
-        lastName: 'Hathaway',
-        photo: "https://es.web.img2.acsta.net/pictures/19/10/16/01/22/0121805.jpg",
-        age: 39,
-        email: 'annehathaway@gmail.com',
-        password: 'diariodeunaprincesa',
-        code: 2000,
-        verified: true,
-        logged: true,
-    },
-    {
-        
-        name: 'Julian',
-        lastName: 'Alvarez',
-        photo: "https://www.mancity.com/meta/media/ptfh0hca/julian-alvarez.png",
-        age: 22,
-        email: 'juli9@gmail.com',
-        password: 'riverplate33',
-        code: 9,
-        verified: true,
-        logged: true,
-    }
+let users=[{
+  
+    name: "Eric",
+    lastName: "Rodriguez",
+    role:"adm",
+    photo:"https://i.pinimg.com/474x/18/b9/ff/18b9ffb2a8a791d50213a9d595c4dd52.jpg",
+    age: 23,
+    email: "feric.rodriguez@gmail.com",
+    password: "Chau6789",
+    code: "ryovxw2v",
+    verified: true, 
+    logged: true,
+
+},
+{
+    name: "Laila",
+    lastName: "Jalil",
+    role: "adm",
+    photo: "https://i.pinimg.com/474x/18/b9/ff/18b9ffb2a8a791d50213a9d595c4dd52.jpg",
+    age: 36,
+    email: "lailajalil@gmail.com",
+    password: "Aprobado2",
+    code: "aj7h57ow",
+    verified: true, 
+    logged: true,
+
+},
+{  
+    name: "Joaquin",
+    lastName: "Gambra",
+    role: "adm",
+    photo:"https://i.pinimg.com/474x/18/b9/ff/18b9ffb2a8a791d50213a9d595c4dd52.jpg",
+    age: 24,
+    email: "joaquingambra@gmail.com",
+    password: "Aprobado1",
+    code: "agkuu4yy",
+    verified: true, 
+    logged: true,
+},
+{
+
+    name: "Juan",
+    lastName: "Perez",
+    role: "adm",
+    photo:"https://i.pinimg.com/474x/18/b9/ff/18b9ffb2a8a791d50213a9d595c4dd52.jpg",
+    age: 40,
+    email: "feric.rodriguez@gmail.com",
+    password: "Chau1234",
+    code: "w8b6y3m2",
+    verified: true, 
+    logged: true,
+
+}
+
 ]
 require('dotenv').config()
 require('../../config/database')
@@ -55,6 +60,7 @@ users.forEach(elemento =>{
     User.create({
     name: elemento.name,
     lastName: elemento.lastName,
+    role: elemento.role,
     photo: elemento.photo,
     age: elemento.age,
     email: elemento.email,
