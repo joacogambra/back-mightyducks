@@ -8,3 +8,4 @@ router.use('/user',user)
 router.use('/cities',city)
 
 module.exports = router;
+
