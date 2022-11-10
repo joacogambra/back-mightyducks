@@ -3,9 +3,16 @@ let router = require('express').Router()
 // cada modulo es un objeto
 let user = require('./user') //ubic de las rutas user
 let city = require('./city');
+
+ //hotel
+let hotel= require('./hotel');
+
+
+
 // obligo al enrrutador principal que use "/user" para controlar las rutas de user
 router.use('/user',user)
 router.use('/cities',city)
+router.use('/hotels',hotel)
 
 module.exports = router;
 
