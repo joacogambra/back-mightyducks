@@ -1,21 +1,21 @@
 let users = [
     {
-     
         name: 'Ignacio',
         lastName: 'Borraz',
-        photo: "https://media-exp1.licdn.com/dms/image/C4D03AQFvfAF10trKWg/profile-displayphoto-shrink_200_200/0/1637173137697?e=2147483647&v=beta&t=kMBjsE5A5-RY5PNJNoRR5nGd9pJCjbKuojBSTUB1bsw",
+        role:"user",
+        photo:"https://avatars.githubusercontent.com/u/95113020?v=4",
         age: 32,
         email: 'ignacioborraz@hotmail.com',
         password: 'Hola1234',
-        code: 32,//'cualquier-codigo-aleatorio'
+        code: 32,
         verified: true,
         logged: true,
     },
     {
-   
         name: 'Lionel',
         lastName: 'Messi',
-        photo: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Lionel_Messi_20180626_%28cropped%29.jpg',
+        role:"user",
+        photo:"https://img.a.transfermarkt.technology/portrait/big/28003-1631171950.jpg?lm=1",
         age: 35,
         email: 'leomessi10@hotmail.com',
         password: 'thiagociromateo',
@@ -24,10 +24,10 @@ let users = [
         logged: true,
     },
     {
-   
         name: 'Anne',
         lastName: 'Hathaway',
-        photo: "https://es.web.img2.acsta.net/pictures/19/10/16/01/22/0121805.jpg",
+        role:"user",
+        photo:"https://es.web.img2.acsta.net/pictures/19/10/16/01/22/0121805.jpg",
         age: 39,
         email: 'annehathaway@gmail.com',
         password: 'diariodeunaprincesa',
@@ -36,10 +36,10 @@ let users = [
         logged: true,
     },
     {
-        
         name: 'Julian',
         lastName: 'Alvarez',
-        photo: "https://www.mancity.com/meta/media/ptfh0hca/julian-alvarez.png",
+        role:"user",
+        photo:"https://cdn.socy.cloud/PRAS/v1/_20/p/202206/upload/PRAS/uf_1654727957PD0AQwr15kapFkdiieXqae32Qt.jpg",
         age: 22,
         email: 'juli9@gmail.com',
         password: 'riverplate33',
@@ -48,20 +48,22 @@ let users = [
         logged: true,
     }
 ]
+
 require('dotenv').config()
 require('../../config/database')
-const User= require('../User')
-users.forEach(elemento =>{
-    User.create({
-    name: elemento.name,
-    lastName: elemento.lastName,
-    photo: elemento.photo,
-    age: elemento.age,
-    email: elemento.email,
-    password: elemento.password,
-    code: elemento.code,
-    verified: elemento.verified,
-    logged: elemento.logged,
-})
+const User = require('../User')
 
+users.forEach(e =>{
+    User.create({
+        name:e.name,
+        lastName:e.lastName,
+        role:e.role,
+        photo:e.photo,
+        age:e.age,
+        email:e.email,
+        password:e.password,
+        code:e.code,
+        verified:e.verified,
+        logged:e.logged,
+    })
 })

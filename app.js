@@ -7,8 +7,8 @@ var logger = require('morgan');
 require('./config/database')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
+// borro users router
+// solo vamos a trabajar con el enrrutador principal
 var app = express();
 
 // view engine setup
@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// borro la configuracion o uso del enrrutador de usuarios
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
