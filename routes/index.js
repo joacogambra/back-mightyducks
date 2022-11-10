@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+let router = require('express').Router()
+// req el modulo de enrrutamiento de express
+// cada modulo es un objeto
+let user = require('./user') //ubic de las rutas user
+let city = require('./city');
+// obligo al enrrutador principal que use "/user" para controlar las rutas de user
+router.use('/user',user)
+router.use('/city',city)
 
 module.exports = router;
