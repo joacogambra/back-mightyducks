@@ -11,6 +11,6 @@ const schema = new mongoose.Schema({
     verified:{type: Boolean, required:true},
     logged:{type: Boolean, required:true},
 })
-
+// para definir un modelo es necesario el nombre de la collection y schema de datos
 const User = mongoose.model('users',schema)
 module.exports = User
