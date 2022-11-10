@@ -5,6 +5,7 @@ let user = require('./user') //ubic de las rutas user
 let city = require('./city');
 // obligo al enrrutador principal que use "/user" para controlar las rutas de user
 router.use('/user',user)
-router.use('/city',city)
+router.use('/cities',city)
 
 module.exports = router;
+
