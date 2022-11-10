@@ -1,0 +1,100 @@
+let cities = [
+    {
+        name:'Rosario',
+        continent:'America',
+        photo:'https://us.cdn.eltribuno.com/122021/1639430259856.jpg',
+        population:1500000,
+        userId:'636c1d2adce4fb63af6008e4',
+    },
+    {
+        name:'Barcelona',
+        continent:'Europe',
+        photo:'https://cdn.thecrazytourist.com/wp-content/uploads/2022/05/ccimage-shutterstock_395162041.jpg',
+        population:1620000,
+        userId:'636c1d2adce4fb63af6008e4',
+    },
+    {
+        name:'Qatar',
+        continent:'Asia',
+        photo:'https://img2.rtve.es/i/?w=1600&i=1666110816222.jpg',
+        population:2931000,
+        userId:'636c1d2adce4fb63af6008e4',
+    },
+    {
+        name:'Bariloche',
+        continent:'America',
+        photo:'https://www.patagoniaandina.com/wp-content/uploads/2020/05/Bariloche-postada.jpg',
+        population:130000,
+        userId:'636c1d2adce4fb63af6008e5',
+    },
+    {
+        name:'Roma',
+        continent:'Europe',
+        photo:'https://www.enroma.com/wp-content/uploads/2019/02/Busqueda-del-tesoro-Roma-del-Agua-en-grupo.jpg',
+        population:2873000,
+        userId:'636c1d2adce4fb63af6008e5',
+    },
+    {
+        name:'Londres',
+        continent:'Europe',
+        photo:'http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTF9OtLxnbxSpLFzyhzXERKiAbnHlG25WfRzxRTNcRiTk0lHvsOXNKH9KNAOvTWi_sS',
+        population:8982000,
+        userId:'636c1d2adce4fb63af6008e5',
+    },
+    {
+        name:'Estambul',
+        continent:'Asia',
+        photo:'https://www.civitatis.com/blog/wp-content/uploads/2020/05/estambul-un-dia.jpg',
+        population:15460000,
+        userId:'636c1d2adce4fb63af6008e2',
+    },
+    {
+        name:'Amsterdam',
+        continent:'Europe',
+        photo:'https://www.costacruceros.com/content/dam/costa/costa-magazine/articles-magazine/travel/amsterdam-travel/amsterdam_m.jpg.image.694.390.low.jpg',
+        population:821000,
+        userId:'636c1d2adce4fb63af6008e2',
+    },
+    {
+        name:'Praga',
+        continent:'Europe',
+        photo:'https://elviajista.com/wp-content/uploads/2021/04/alojarseenpraga.jpg',
+        population:1300000,
+        userId:'636c1d2adce4fb63af6008e2',
+    },
+    {
+        name:'New York',
+        continent:'America',
+        photo:'https://a.cdn-hotels.com/gdcs/production196/d1429/5c2581f0-c31d-11e8-87bb-0242ac11000d.jpg?impolicy=fcrop&w=800&h=533&q=medium',
+        population:8468000,
+        userId:'636c1d2adce4fb63af6008e3',
+    },
+    {
+        name:'Milan',
+        continent:'Europe',
+        photo:'https://www.enmilan.net/wp-content/uploads/2019/01/que-ver-en-milan.jpeg',
+        population:1352000,
+        userId:'636c1d2adce4fb63af6008e3',
+    },
+    {
+        name:'La Plata',
+        continent:'America',
+        photo:'https://mediaim.expedia.com/destination/1/34e20433dd0a544b1da8a9e3b32a3bce.jpg',
+        population:894000,
+        userId:'636c1d2adce4fb63af6008e3',
+    },
+]
+
+require('dotenv').config()
+require('../../config/database')
+const City = require('../City')
+
+cities.forEach(e =>{
+    City.create({
+        name:e.name,
+        continent:e.continent,
+        photo:e.photo,
+        population:e.population,
+        userId:e.userId,
+    })
+})
