@@ -12,7 +12,7 @@ let hotel= require('./hotel');
 // obligo al enrrutador principal que use "/user" para controlar las rutas de user
 router.use('/user',user)
 router.use('/cities',city)
-router.use('/hotels',hotel)
+router.use('/api/hotels',hotel)
 
 module.exports = router;
 
