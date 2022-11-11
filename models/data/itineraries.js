@@ -93,7 +93,7 @@ let itineraries = [
         citiId: '636d39386f873da185c9a586',
         name: 'Windsor Castle',
         photo: ['https://mediaim.expedia.com/localexpert/169694/4fe79ceb-570e-4a4b-825d-44ad6fd3554f.jpg','https://assets.vogue.com/photos/5da8ce98d7fd03000824e035/master/w_2560%2Cc_limit/GettyImages-1176172540.jpg','https://www.royal.uk/sites/default/files/images/feature/windsor_crop.jpg'],
-        description: 'Windsor, where you explore the lavish State Apartments and St. George’s Chapel of Windsor Castle, an official residence of Her Majesty the Queen.',
+        description: 'Windsor, where you explore the lavish State Apartments and St. Georges Chapel of Windsor Castle, an official residence of Her Majesty the Queen.',
         price: 15,
         duration: 4,
         userId: '636d2cd4a943744050f9ef16',
@@ -105,7 +105,7 @@ let itineraries = [
         description: 'Bug Bus bus voucher at any of the stops along one of the comprehensive routes. Opt for seating on the open-air upper deck or covered lower deck, depending on the weather, and listen to live or recorded commentary depending on the route chosen.',
         price: 18,
         duration: 3,
-        userId: '6636d2cd4a943744050f9ef16',
+        userId: '636d2cd4a943744050f9ef16',
     },
 ]
 
