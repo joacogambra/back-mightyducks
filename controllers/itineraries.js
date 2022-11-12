@@ -24,6 +24,22 @@ const controller ={
                 message:'Itinerary not found'
             })
         }
-    }
+    },
+    create : async (req,res) =>{
+        console.log(req)
+        try{
+            let newUser = await Itinerary.create(req.body)
+            res.status(201).json({
+                id:newUser._id,
+                success:true,
+                message:'Itinerary created correctly'
+            })
+        }catch(error){
+            res.status(400).json({
+                success:false,
+                message:error.message
+            })
+        }
+    },
 }
 module.exports = controller
