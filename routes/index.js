@@ -9,7 +9,8 @@ let hotel= require('./hotel');
 router.use('/user',user)
 router.use('/cities',city)
 router.use('/itineraries',itinerary)
-router.use('/hotels',hotel)
+router.use('/api/hotels',hotel)
+
 
 module.exports = router;
 
