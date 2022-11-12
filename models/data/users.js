@@ -1,4 +1,6 @@
 let users=[{
+
+    _id:('636d2cd4a943744050f9ef13'),
     name: "Eric",
     lastName: "Rodriguez",
     role:"adm",
@@ -11,7 +13,7 @@ let users=[{
     logged: true,
 
 },
-{
+{   _id:('636d2cd4a943744050f9ef14'),
     name: "Laila",
     lastName: "Jalil",
     role: "adm",
@@ -25,6 +27,7 @@ let users=[{
 
 },
 {  
+    _id:('636d2cd4a943744050f9ef15'),
     name: "Joaquin",
     lastName: "Gambra",
     role: "adm",
@@ -37,7 +40,7 @@ let users=[{
     logged: true,
 },
 {
-
+    _id:('636d2cd4a943744050f9ef16'),
     name: "Juan",
     lastName: "Perez",
     role: "adm",
