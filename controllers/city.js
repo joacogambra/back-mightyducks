@@ -53,11 +53,11 @@ const controller = {
         }
     },
     one: async (req, res) => {
-        let id = req.params.id;
-        // let {query} = req
+         let id = req.params.id;
+         //let {query} = req
         try {
-          // let cityuser = await City.find({userId:query.userId})
-          let cityuser = await City.find({ _id: id }).populate({ path:"userId", select: 'name photo -_id' });
+         //let cityuser = await City.find({userId:query.userId})
+          let cityuser = await City.find({ _id: id },"-photo -continent -population").populate({ path:"userId", select: 'name photo -_id' });
           if (cityuser) {
             res.status(200).json({
               success: true,
@@ -85,12 +85,12 @@ const controller = {
                 res.status(200).json({
                     id:uno._id,
                     success:true,
-                    message:'city modified correctly'
+                    message:'city deleted correctly'
                 })
             }else{
                 res.status(404).json({
                     success:false,
-                    message:'error 404 dont found'
+                    message:'error 404 not found'
                 })
             }
         }catch(error){
@@ -100,6 +100,22 @@ const controller = {
             })
         }
     },
+    destroy: async(req,res)=>{
+        let{id}=req.params
+        try{
+            let uno  = await City.findOneAndDelete({_id:id})
+            res.status(200).json({
+                id:uno._id,
+                success:true,
+                message:'user deleted correctly'
+            })
+        }catch{
+            res.status(404).json({
+                success:false,
+                message:'error 404 dont found'
+            })
+        }
+    }
 }
 
 module.exports = controller

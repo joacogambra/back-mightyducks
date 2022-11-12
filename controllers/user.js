@@ -75,7 +75,7 @@ const controller = {
         }catch{
             res.status(404).json({
                 success:false,
-                message:'error 404 dont found'
+                message:'error 404 not found'
             })
         }
     }
