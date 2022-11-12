@@ -1,6 +1,8 @@
 let router = require('express').Router()
-let {read} = require('../controllers/itineraries')
+let {read, create} = require('../controllers/itineraries')
 
-router.get('/', read)
+router.route('/')
+    .post(create)
+    .get(read)
 
 module.exports = router;
