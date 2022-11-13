@@ -51,13 +51,13 @@ const controller = {
             }else{
                 res.status(404).json({
                     success:false,
-                    message:'error 404 dont found'
+                    message:'error 404 not found'
                 })
             }
         }catch(error){
             res.status(400).json({
                 success:false,
-                message:'user dont found'
+                message:'user not found'
             })
         }
     },
@@ -75,7 +75,7 @@ const controller = {
         }catch{
             res.status(404).json({
                 success:false,
-                message:'error 404 dont found'
+                message:'error 404 not found'
             })
         }
     }
