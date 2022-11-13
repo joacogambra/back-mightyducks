@@ -41,5 +41,28 @@ const controller ={
             })
         }
     },
+    update: async(req,res)=>{
+        let {id} = req.params
+        try{
+            let uno = await Itinerary.findOneAndUpdate({_id:id},req.body, {new:true})
+            if(uno){
+                res.status(200).json({
+                    id:uno._id,
+                    success:true,
+                    message:'Itinerary modified correctly'
+                })
+            }else{
+                res.status(404).json({
+                    success:false,
+                    message:'error 404 not found'
+                })
+            }
+        }catch(error){
+            res.status(400).json({
+                success:false,
+                message:'user not found'
+            })
+        }
+    },
 }
 module.exports = controller
