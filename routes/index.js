@@ -14,5 +14,6 @@ router.use('/api/hotels',hotel)
 
 
 
+
 module.exports = router;
 
