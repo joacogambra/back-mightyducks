@@ -4,11 +4,14 @@ const controller={
 
     read: async (req, res)=>{
       
-        let { id } = req.params
-        console.log(req.params.number)
-          
+        let  query  = {}
+    
+        if (req.query){
+           query = {hotelId : req.query.hotelId }
+        }
+          console.log(req.query.hotelId)
            try{ 
-          let shows = await Show.find({hotelId: id} )
+          let shows = await Show.find(query).select('-userId')
     
           if (shows){
             res.status(200).json({
