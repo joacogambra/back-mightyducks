@@ -59,7 +59,7 @@ create: async (req, res)=>{
         let { id } = req.params
         console.log(req.body);
         try {
-            let shows = await Show.findOneAndUpdate(id, update, {new:true})
+            let shows = await Show.find(id, update, {new:true})
             if (shows) {
                 res.status(200).json({
                     response: shows,
@@ -78,6 +78,36 @@ create: async (req, res)=>{
                 message: error.message
             })
         }        
+
+},
+destroy: async (req, res)=>{
+    
+    let remove = req.body   
+    let  id  = req.params.id
+    console.log(id);
+           
+       try{ 
+      let shows = await Show.findOneAndDelete({_id: id}, remove)
+
+  if (shows){
+    res.status(200).json({
+        response: shows,
+        success: true,     
+        message: "Show were deleted successfully"
+    })
+} else{
+    res.status(400).json({
+        success: false,
+        message: "Couldn't find shows related to the specified Hotel"
+
+    })
+}
+} catch(error) {
+res.status(400).json({
+    success: false,
+    message: error.message
+})
+}        
 
 }
 }

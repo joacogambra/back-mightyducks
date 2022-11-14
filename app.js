@@ -16,13 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-const bodyAdm=(req, res, next) => {
-  if (req.user.role ==='adm'){
-      next()
-  } else{
-      throw new Error('You must an Administrator')
-  }
-}
+
 
 app.use(logger('dev'));
 app.use(cors());
@@ -32,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.patch('/', bodyAdm);
+
 // borro la configuracion o uso del enrrutador de usuarios
 
 // catch 404 and forward to error handler
