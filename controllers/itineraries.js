@@ -64,5 +64,21 @@ const controller ={
             })
         }
     },
+    destroy: async(req,res)=>{
+        let{id} = req.params
+        try{
+            let uno  = await Itinerary.findOneAndDelete({_id:id})
+            res.status(200).json({
+                id:uno._id,
+                success:true,
+                message:'Itinerary deleted correctly'
+            })
+        }catch{
+            res.status(404).json({
+                success:false,
+                message:'error 404 Itinerary not found'
+            })
+        }
+    }
 }
 module.exports = controller
