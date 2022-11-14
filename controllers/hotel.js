@@ -89,7 +89,6 @@ const controller = {
             })
         }        
     },
-    
     update: async(req,res)=>{
         let update = req.body
         let { id } = req.params
@@ -100,12 +99,12 @@ const controller = {
                 res.status(200).json({
                     response: hotels,
                     success: true,
-                    message: "Hotel found successfully"
+                    message: "Hotel updated successfully"
                 })
             } else {
                 res.status(404).json({
                     success: false,
-                    message: "Couldn't find hotel"
+                    message: "Couldn't update hotel"
                 })
             }            
         } catch(error) {
@@ -116,7 +115,33 @@ const controller = {
         }        
 
 
-    }
+    },
+    destroy: async (req, res)=>{
+        let remove = req.body
+        let { id } = req.params
+        
+    
+        try {
+            let hotels = await Hotel.findByIdAndRemove(id, remove)
+            if (hotels) {
+                res.status(200).json({
+                    response: hotels,
+                    success: true,
+                    message: "Hotel removed successfully"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Couldn't remove hotel"
+                })
+            }            
+        } catch(error) {
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }   
 
+}
 }
 module.exports = controller;
