@@ -89,5 +89,32 @@ const controller = {
             })
         }        
     },
+    update: async(req,res)=>{
+        let update = req.body
+        let { id } = req.params
+
+        try {
+            let hotels = await Hotel.findOneAndUpdate(id, update, {new:true})
+            if (hotels) {
+                res.status(200).json({
+                    response: hotels,
+                    success: true,
+                    message: "Hotel found successfully"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Couldn't find hotel"
+                })
+            }            
+        } catch(error) {
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }        
+
+
+    }
 }
 module.exports = controller;

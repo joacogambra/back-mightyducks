@@ -12,7 +12,7 @@ router.use('/user',user)
 router.use('/cities',city)
 router.use('/itineraries',itinerary)
 router.use('/api/hotels',hotel)
-router.use(' /api/hotels/:id, hotel',hotel)
+router.use(' /api/hotels/:id ',hotel)
 router.use('/api/shows?hotelId=id',show)
 router.use('/api/shows',show)
 
