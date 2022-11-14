@@ -1,19 +1,10 @@
-// primero el modelo que necesito controlar
 const { query } = require('express')
 const City = require('../models/City')
 
-// segundo defino el objeto controller
-const controller = {
-    // todos los metodos son asincronos, dependen del tiempo de espera de la peticion/respuesta
-    // async () =>{},
-    // siempre se depende de req y res
-    //metodo para crear
+const controller = {  
     create : async (req,res) =>{
         try{
-            let newCity = await City.create(req.body) //req.body es de donde viene para crear
-            // variable que espera la creacion de un nuevo documento
-            // el obj con los datos necesarios para crear esta en req.body
-            // una vez creado el doc, elaboro la respuesta que va a devolver la peticion
+            let newCity = await City.create(req.body) 
             res.status(201).json({
                 id:newCity._id,
                 success:true,
@@ -27,10 +18,13 @@ const controller = {
         }
     },
     read: async(req,res)=>{
-        let query ={}
-        console.log(query);
+        let query = {}
+
         if(req.query.continent){
             query = {continent: req.query.continent}
+        }
+        if (req.query.name){
+            query={ name: {$regex:`${req.query.name}`, $options:'i'}}
         }
         /*if(req.query.population){
             query = {
