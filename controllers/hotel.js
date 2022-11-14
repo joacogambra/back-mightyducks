@@ -119,6 +119,7 @@ const controller = {
     destroy: async (req, res)=>{
         let remove = req.body
         let { id } = req.params
+        
     
         try {
             let hotels = await Hotel.findByIdAndRemove(id, remove)

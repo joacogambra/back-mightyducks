@@ -33,7 +33,26 @@ const controller={
         })
     }        
 },
+create: async (req, res)=>{
+    console.log(req.body)
+    try{ 
+      let new_show = await Show.create(req.body)
+        res.status(201).json({
+            response: new_show,
+            success: true, 
+             message: "The Show was created successfully"
+        })
 
+    }
+    
+    catch(error){
+        res.status(400).json({
+            success:false,
+            message: "Couldn't create the Show"
+        })
+     }
+    
+    },
 
 }
 module.exports = controller;
