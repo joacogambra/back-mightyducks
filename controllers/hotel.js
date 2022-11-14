@@ -26,16 +26,17 @@ const controller = {
   read: async (req, res)=>{
     let query= {}
     let order= {}
+    
     console.log(query)
     if (req.query.name){
         query={ name: {$regex:`${req.query.name}`, $options:'i' }}
     }
     if (req.query.order){
        
-        order={ capacity: req.query.order} 
+    order={ capacity: req.query.order} 
 
     }
-  
+    
 
        try{ 
       let hotels = await Hotel.find(query).sort(order)
@@ -63,6 +64,32 @@ const controller = {
         })
      }
     
-    }   
+    },   
+    one: async(req,res) => { 
+         let { id } = req.params
+        console.log(req.params.id)
+        try {
+            let hotels = await Hotel.findById(id).populate({path:"userId",  select: "name photo -_id"} )
+            if (hotels) {
+                res.status(200).json({
+                    response: hotels,
+                    success: true,
+                    message: "Hotel found successfully"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Couldn't find hotel"
+                })
+            }            
+        } catch(error) {
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }        
+    },
+
+    
 }
 module.exports = controller;
