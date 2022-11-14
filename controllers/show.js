@@ -35,7 +35,7 @@ const controller={
     }        
 },
 create: async (req, res)=>{
-   
+   console.log(req.body);
     
     try{ 
       let new_show = await Show.create(req.body)
@@ -57,7 +57,6 @@ create: async (req, res)=>{
     update: async(req,res)=>{
         let update = req.body
         let { id } = req.params
-        console.log(req.body);
         try {
             let shows = await Show.find(id, update, {new:true})
             if (shows) {
@@ -84,7 +83,6 @@ destroy: async (req, res)=>{
     
     let remove = req.body   
     let  id  = req.params.id
-    console.log(id);
            
        try{ 
       let shows = await Show.findOneAndDelete({_id: id}, remove)
@@ -98,7 +96,7 @@ destroy: async (req, res)=>{
 } else{
     res.status(400).json({
         success: false,
-        message: "Couldn't find shows related to the specified Hotel"
+        message: "Couldn't find the show"
 
     })
 }

@@ -136,8 +136,8 @@ let shows = [
 ]
 
 require('dotenv').config()
-require('../../config/database')
-const Show= require('../Show')
+require('../database')
+const Show= require('../../models/Show')
 shows.forEach(elemento =>{
    Show.create({
     hotelId: elemento.hotelId,

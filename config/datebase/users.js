@@ -56,8 +56,8 @@ let users=[{
 
 ]
 require('dotenv').config()
-require('../../config/database')
-const User= require('../User')
+require('.')
+const User= require('../../models/User')
 users.forEach(elemento =>{
     User.create({
     name: elemento.name,

@@ -101,8 +101,8 @@ let hotels=[
 },
 ]
 require('dotenv').config()
-require('../../config/database')
-const Hotel= require('../Hotel')
+require('../database')
+const Hotel= require('../../models/Hotel')
 hotels.forEach(elemento =>{
    Hotel.create({
     name: elemento.name,

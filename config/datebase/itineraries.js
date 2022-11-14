@@ -110,8 +110,8 @@ let itineraries = [
 ]
 
 require('dotenv').config()
-require('../../config/database')
-const Itinerary = require('../Itinerary')
+require('../database')
+const Itinerary = require('../../models/Itinerary')
 
 itineraries.forEach(e =>{
     Itinerary.create({
