@@ -9,6 +9,7 @@ const controller={
             if (req.query){
                query = {hotelId : req.query.hotelId }
             }
+           
               console.log(req.query.hotelId)
                try{ 
               let shows = await Show.find(query).select('-userId')
@@ -34,7 +35,8 @@ const controller={
     }        
 },
 create: async (req, res)=>{
-    console.log(req.body)
+   
+    
     try{ 
       let new_show = await Show.create(req.body)
         res.status(201).json({
@@ -44,15 +46,41 @@ create: async (req, res)=>{
         })
 
     }
-    
     catch(error){
         res.status(400).json({
             success:false,
-            message: "Couldn't create the Show"
+            message: "Couldn't create the Show, you must be logged in"
         })
      }
     
     },
+    update: async(req,res)=>{
+        let update = req.body
+        let { id } = req.params
+        console.log(req.body);
+        try {
+            let shows = await Show.findOneAndUpdate(id, update, {new:true})
+            if (shows) {
+                res.status(200).json({
+                    response: shows,
+                    success: true,
+                    message: "Show updated successfully"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "Couldn't update the show"
+                })
+            }            
+        } catch(error) {
+            res.status(400).json({
+                success: false,
+                message: error.message
+            })
+        }        
 
 }
+}
+
+
 module.exports = controller;
