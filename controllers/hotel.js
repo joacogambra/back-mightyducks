@@ -92,7 +92,7 @@ const controller = {
     update: async(req,res)=>{
         let update = req.body
         let { id } = req.params
-
+        console.log(req.body);
         try {
             let hotels = await Hotel.findOneAndUpdate(id, update, {new:true})
             if (hotels) {
