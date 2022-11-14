@@ -9,6 +9,7 @@ const controller={
             if (req.query){
                query = {hotelId : req.query.hotelId }
             }
+           
               console.log(req.query.hotelId)
                try{ 
               let shows = await Show.find(query).select('-userId')
