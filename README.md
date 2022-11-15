@@ -1,4 +1,4 @@
-# back-mightyducks
+# Back-mightyducks
 ## for [Jalil, Laila](https://github.com/LailaJalil) & [Gambra, Joaquin](https://github.com/joacogambra)
 | Use | Description          | Version |
 | :---     |    :----:            |    ---: |
