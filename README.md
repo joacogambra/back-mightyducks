@@ -6,7 +6,7 @@
 | Node.js  | JS runtime environment | v18.12   |
 | Express  | framework for Nodejs | - |
 | MDBCompass  | Tool MongoDB      | v1.33.1   |
-| Mongoose  | Tool MongoDB      | v1.33   |
+| Mongoose  | Node Framework      | v1.33   |
 | Postman  | API Platform      | v10.1.2  |
 
 ```
