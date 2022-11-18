@@ -1,4 +1,5 @@
 .env
 /node_modules
 ignore.js
-
+anotaciones.md
+redux.md
