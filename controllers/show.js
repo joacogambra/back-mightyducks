@@ -3,7 +3,7 @@ const Show= require('../models/Show')
 const controller={
 
         read: async (req, res)=>{
-
+           
             let  query  = {}
     
             if (req.query){
@@ -13,6 +13,8 @@ const controller={
               console.log(req.query.hotelId)
                try{ 
               let shows = await Show.find(query).select('-userId')
+              ///select especifica que campos incluir o no, con el menos
+              //especificamos cual no
 
           if (shows){
             res.status(200).json({
