@@ -25,6 +25,7 @@ const controller = {
         }
         if (req.query.name){
             query={ name: {$regex:`${req.query.name}`, $options:'i'}}
+            
         }
         /*if(req.query.population){
             query = {

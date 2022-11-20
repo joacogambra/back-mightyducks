@@ -1,7 +1,10 @@
+const { response } = require('../app')
 const Hotel= require('../models/Hotel')
 
 const controller = {
-
+//controla la conexion entre cliente 
+//(vista) y servidor (modelo de base de datos)
+//POSTMAN  es una herramienta q nos permite  crear peticiones a la API
     create: async (req, res)=>{
     
     try{ 
@@ -30,27 +33,30 @@ const controller = {
     console.log(query)
     if (req.query.name){
         query={ name: {$regex:`${req.query.name}`, $options:'i' }}
-    }
+        
+    } 
+    // regex es un operador que sirve para buscar palabras equivalentes, options i es 
+            //para que los dos esten en lowercase and
     if (req.query.order){
        
     order={ capacity: req.query.order} 
 
     }
+    console.log(req.query);
     
-
        try{ 
       let hotels = await Hotel.find(query).sort(order)
 
-      if (hotels){
+      if (hotels.length > 0){
         res.status(200).json({
             response: hotels,
             success: true,     
             message: "hotels are filtered successfully"
         })
-    } else{
-        res.status(400).json({
+    } else {
+        res.status(404).json({
             success: false,
-            message: "Couldn't find hotels"
+            message: "error 404, not found  "
 
         })
     }
