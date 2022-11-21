@@ -27,12 +27,9 @@ const controller = {
             query={ name: {$regex:`${req.query.name}`, $options:'i'}}
             
         }
-        /*if(req.query.population){
-            query = {
-                ...query,
-                population: req.query.population
-            }
-        } de esta forma concateno otra propiedad */ 
+        if (req.query.userId) {
+            query = { userId: req.query.userId };
+          }
         try{
             let todos = await City.find(query)
             res.status(200).json({
