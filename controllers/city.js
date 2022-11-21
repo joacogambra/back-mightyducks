@@ -31,7 +31,7 @@ const controller = {
             query = { userId: req.query.userId };
           }
         try{
-            let todos = await City.find(query)
+            let todos = await City.find(query, "-userId")
             res.status(200).json({
                 response:todos,
                 success:true,
