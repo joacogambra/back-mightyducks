@@ -9,7 +9,7 @@ const validator= (schema)=>[
        if (validated.error) {
         return res.status(200).json({
             success: false,
-            message: validated.error.details
+            message: validated.error.details.map(error=>error.message)
         })
     }
         next()

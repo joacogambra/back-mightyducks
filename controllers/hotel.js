@@ -7,7 +7,7 @@ const controller = {
     
     try{ 
       let new_hotel = await Hotel.create(req.body)
-      console.log(res.response)
+      
         res.status(201).json({
             response: new_hotel,
             success: true, 

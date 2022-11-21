@@ -30,7 +30,7 @@ describe('GET /api/hotels/?name=', function () {
                 .post('/api/hotels/')
                 .send({                 
                     "name": "Hotel Sheraton ",
-                    "photo": ["https://www.hotelquirinale.it/data/2560/Hotel-Quirinale-Roma-ingresso.jpg"] ,
+                    "photo": "https://www.hotelquirinale.it/data/2560/Hotel-Quirinale-Roma-ingresso.jpg" ,
                     "capacity": 17000,
                     "cityId": "636c1f374828888e007ada20",
                     "userId": "636d2cd4a943744050f9ef13",
