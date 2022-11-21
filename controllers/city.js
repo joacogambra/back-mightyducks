@@ -3,6 +3,7 @@ const City = require('../models/City')
 
 const controller = {  
     create : async (req,res) =>{
+        console.log(req.error);
         try{
             let newCity = await City.create(req.body) 
             res.status(201).json({
