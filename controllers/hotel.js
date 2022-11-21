@@ -28,6 +28,7 @@ const controller = {
   read: async (req, res)=>{
     let query= {}
     let order= {}
+    let id = {}
     
     console.log(query)
     if (req.query.name){
@@ -41,10 +42,12 @@ const controller = {
     order={ capacity: req.query.order} 
 
     }
-
-    
+    if (req.query.userId){
+        query= { userId: req.query.userId}
+    }
+   
        try{ 
-      let hotels = await Hotel.find(query).sort(order)
+      let hotels = await Hotel.find(query, '-userId ').sort(order)
 
       if (hotels.length > 0){
         res.status(200).json({
