@@ -45,9 +45,10 @@ const controller = {
     if (req.query.userId){
         query= { userId: req.query.userId}
     }
+    
    
        try{ 
-      let hotels = await Hotel.find(query, '-userId ').sort(order)
+      let hotels = await Hotel.find(query, '-userId').sort(order)
 
       if (hotels.length > 0){
         res.status(200).json({
