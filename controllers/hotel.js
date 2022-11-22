@@ -2,13 +2,12 @@ const { response } = require('../app')
 const Hotel= require('../models/Hotel')
 
 const controller = {
-//controla la conexion entre cliente 
-//(vista) y servidor (modelo de base de datos)
-//POSTMAN  es una herramienta q nos permite  crear peticiones a la API
+
     create: async (req, res)=>{
     
     try{ 
       let new_hotel = await Hotel.create(req.body)
+      
         res.status(201).json({
             response: new_hotel,
             success: true, 
@@ -42,7 +41,7 @@ const controller = {
     order={ capacity: req.query.order} 
 
     }
-    console.log(req.query);
+
     
        try{ 
       let hotels = await Hotel.find(query).sort(order)
@@ -56,7 +55,7 @@ const controller = {
     } else {
         res.status(404).json({
             success: false,
-            message: "error 404, not found  "
+            message: "error 404, not found"
 
         })
     }
