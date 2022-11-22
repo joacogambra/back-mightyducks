@@ -17,7 +17,7 @@ describe('GET /cities/:id', function(){
             .end((error, res) => {
                 if(error){
                     console.log(res);
-                    return done(error)
+                    return done(error.message)
                 }
                 return done()
             })
