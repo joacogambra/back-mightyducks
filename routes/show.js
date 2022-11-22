@@ -7,6 +7,8 @@ router.route('/')
 .get(read)
 .post(create)
 router.patch('/:id', update)   
-router.delete('/:id', destroy) 
+
+router.route('/:id')
+    .delete(destroy)
 
 module.exports= router;

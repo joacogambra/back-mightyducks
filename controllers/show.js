@@ -6,9 +6,13 @@ const controller={
            
             let  query  = {}
     
-            if (req.query){
+            if (req.query.hotelId){
                query = {hotelId : req.query.hotelId }
             }
+            if (req.query.userId){
+                query = {userId : req.query.userId }
+             }
+
            
               console.log(req.query.hotelId)
                try{ 
@@ -81,34 +85,21 @@ create: async (req, res)=>{
         }        
 
 },
-destroy: async (req, res)=>{
-    
-    let remove = req.body   
-    let  id  = req.params.id
-           
-       try{ 
-      let shows = await Show.findOneAndDelete({_id: id}, remove)
-
-  if (shows){
-    res.status(200).json({
-        response: shows,
-        success: true,     
-        message: "Show were deleted successfully"
-    })
-} else{
-    res.status(400).json({
-        success: false,
-        message: "Couldn't find the show"
-
-    })
-}
-} catch(error) {
-res.status(400).json({
-    success: false,
-    message: error.message
-})
-}        
-
+destroy: async(req,res)=>{
+    let{id} = req.params
+    try{
+        let show  = await Show.findOneAndDelete({_id:id})
+        res.status(200).json({
+            id:show._id,
+            success:true,
+            message:'Show deleted correctly'
+        })
+    }catch{
+        res.status(404).json({
+            success:false,
+            message:'error 404 Show not found'
+        })
+    }
 }
 }
 
