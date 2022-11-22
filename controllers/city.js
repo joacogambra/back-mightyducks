@@ -3,6 +3,7 @@ const City = require('../models/City')
 
 const controller = {  
     create : async (req,res) =>{
+        console.log(req.error);
         try{
             let newCity = await City.create(req.body) 
             res.status(201).json({
@@ -31,7 +32,7 @@ const controller = {
             query = { userId: req.query.userId };
           }
         try{
-            let todos = await City.find(query)
+            let todos = await City.find(query, "-userId")
             res.status(200).json({
                 response:todos,
                 success:true,
