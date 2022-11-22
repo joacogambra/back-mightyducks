@@ -15,7 +15,38 @@ describe('GET /cities', function(){
                     console.log(res);
                     return done(error)
                 }
-                return done()
+                 done()
             }) 
     })
+})
+
+describe('POST /cities',function(){
+    it('name is a string',function (done){
+        request(app)
+            .post('/cities')
+            .expect(res =>{
+                assert.isString(res.name)
+            })
+            .end((error, res) => {
+                if(error){
+                    console.log(res);
+                    return done(error)
+                }
+                done()
+            }) 
+    })
+    it("400 bad request"), function (done) {
+      request(app)
+        .post('/cities')
+        .expect(res => {
+          assert.isString(res.name)
+        })
+        .end((error, res) => {
+            if(error){
+                console.log(res);
+                return done(error)
+            }
+            done()
+        }) 
+    }
 })
