@@ -3,15 +3,20 @@ const Itinerary = require('../models/Itinerary')
 
 const controller ={
     read: async(req,res)=>{
-        let {query} = req
+        let query = {}
+        if (req.query.userId) {
+            query = { userId: req.query.userId };
+          }
+          if (req.query.citiId) {
+            query = { citiId: req.query.citiId };
+          }
         try{
-            //let una = await Itinerary.find(query).populate({path:'citiId', select:'name'})
-            let una = await Itinerary.find({citiId:query.citiId},"-userId")
+            let una = await Itinerary.find(query, "-userId")
             if(una){
                 res.status(200).json({
                     response:una,
                     success:true,
-                    message:'Itinerary found correctly'})
+                    message:'Itineraries found correctly'})
             }else{
                 res.status(404).json({
                     success:false,
