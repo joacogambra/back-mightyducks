@@ -7,11 +7,13 @@ const controller={
             let  query  = {}
     
             if (req.query.hotelId){
+
                query = { hotelId : req.query.hotelId }
             }
             if (req.query.userId){
                 query = { userId : req.query.userId }
              }
+
                try{ 
               let shows = await Show.find(query, '-userId')
               ///select especifica que campos incluir o no, con el menos
@@ -83,6 +85,7 @@ create: async (req, res)=>{
         }        
 
 },
+
 destroy: async (req, res)=>{
     
     let remove = req.body   
@@ -110,6 +113,7 @@ res.status(400).json({
     message: error.message
 })
 }        
+
 
 }
 }
