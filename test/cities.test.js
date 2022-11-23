@@ -8,11 +8,10 @@ describe('GET /cities', function(){
         request(app)
             .get('/cities')
             .expect(res =>{
-                assert(Array.isObject([res.body.response]), 'cities found');
+                assert(Array.isArray([res.body.response]), 'cities found');
             })
             .end((error, res) => {
                 if(error){
-                    console.log(res);
                     return done(error)
                 }
                  done()
@@ -20,7 +19,7 @@ describe('GET /cities', function(){
     })
 })
 
-describe('POST /cities',function(){
+/*describe('POST /cities',function(){
     it('name is a string',function (done){
         request(app)
             .post('/cities')
@@ -29,7 +28,6 @@ describe('POST /cities',function(){
             })
             .end((error, res) => {
                 if(error){
-                    console.log(res);
                     return done(error)
                 }
                 done()
@@ -43,10 +41,9 @@ describe('POST /cities',function(){
         })
         .end((error, res) => {
             if(error){
-                console.log(res);
                 return done(error)
             }
             done()
         }) 
     }
-})
+})*/
