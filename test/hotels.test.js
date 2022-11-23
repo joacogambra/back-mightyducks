@@ -5,9 +5,9 @@ const request = require('supertest')
 
 
 
-describe('GET /api/hotels/?name=', function () {
+/* describe('GET /api/hotels/?name=', function () {
 
-    it('404 hotel not found with filter', function () {
+    it('404 hotel not found with filter', function (done) {
         request(app)
             .get('/api/hotels/?name=rgzg')
             .expect(res=>{
@@ -25,7 +25,7 @@ describe('GET /api/hotels/?name=', function () {
     })
     describe('POST /api/hotels/', function () {
 
-        it('The hotel was created successfully', function () {
+        it('The hotel was created successfully', function (done) {
             request(app)
                 .post('/api/hotels/')
                 .send({                 
@@ -47,4 +47,4 @@ describe('GET /api/hotels/?name=', function () {
                     })
                 })
     
-        })
+        })*/
