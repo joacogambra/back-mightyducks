@@ -1,3 +1,4 @@
+const { response } = require('../app')
 const Hotel= require('../models/Hotel')
 
 const controller = {
@@ -6,6 +7,7 @@ const controller = {
     
     try{ 
       let new_hotel = await Hotel.create(req.body)
+      
         res.status(201).json({
             response: new_hotel,
             success: true, 
@@ -26,31 +28,38 @@ const controller = {
   read: async (req, res)=>{
     let query= {}
     let order= {}
+    let id = {}
     
     console.log(query)
     if (req.query.name){
         query={ name: {$regex:`${req.query.name}`, $options:'i' }}
-    }
+        
+    } 
+    // regex es un operador que sirve para buscar palabras equivalentes, options i es 
+            //para que los dos esten en lowercase and
     if (req.query.order){
        
     order={ capacity: req.query.order} 
 
     }
+    if (req.query.userId){
+        query= { userId: req.query.userId}
+    }
     
-
+   
        try{ 
-      let hotels = await Hotel.find(query).sort(order)
+      let hotels = await Hotel.find(query, '-userId').sort(order)
 
-      if (hotels){
+      if (hotels.length > 0){
         res.status(200).json({
             response: hotels,
             success: true,     
             message: "hotels are filtered successfully"
         })
-    } else{
-        res.status(400).json({
+    } else {
+        res.status(404).json({
             success: false,
-            message: "Couldn't find hotels"
+            message: "error 404, not found"
 
         })
     }

@@ -3,16 +3,21 @@ const Show= require('../models/Show')
 const controller={
 
         read: async (req, res)=>{
-
+           
             let  query  = {}
     
-            if (req.query){
-               query = {hotelId : req.query.hotelId }
+            if (req.query.hotelId){
+
+               query = { hotelId : req.query.hotelId }
             }
-           
-              console.log(req.query.hotelId)
+            if (req.query.userId){
+                query = { userId : req.query.userId }
+             }
+
                try{ 
-              let shows = await Show.find(query).select('-userId')
+              let shows = await Show.find(query, '-userId')
+              ///select especifica que campos incluir o no, con el menos
+              //especificamos cual no
 
           if (shows){
             res.status(200).json({
@@ -56,7 +61,8 @@ create: async (req, res)=>{
     },
     update: async(req,res)=>{
         let update = req.body
-        let { id } = req.params
+        console.log(req.body);
+        let  id  = req.params
         try {
             let shows = await Show.find(id, update, {new:true})
             if (shows) {
@@ -79,6 +85,7 @@ create: async (req, res)=>{
         }        
 
 },
+
 destroy: async (req, res)=>{
     
     let remove = req.body   
@@ -94,9 +101,9 @@ destroy: async (req, res)=>{
         message: "Show were deleted successfully"
     })
 } else{
-    res.status(400).json({
+    res.status(404).json({
         success: false,
-        message: "Couldn't find the show"
+        message: "Couldn't find the show"   
 
     })
 }
@@ -106,6 +113,7 @@ res.status(400).json({
     message: error.message
 })
 }        
+
 
 }
 }
