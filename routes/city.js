@@ -1,6 +1,6 @@
 let router = require('express').Router()
 let {create, read, one, update, destroy} = require('../controllers/city')
-let scheme = require('../schemes/schemeCity')
+let scheme = require('../schemas/schemeCity')
 let validator = require ('../middlewares/validator')
 const joi = require('joi')
 

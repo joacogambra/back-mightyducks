@@ -9,8 +9,8 @@ let users=[{
     email: "feric.rodriguez@gmail.com",
     password: "Chau6789",
     code: "ryovxw2v",
-    verified: true, 
-    logged: true,
+    verified: false, 
+    logged: false,
 
 },
 {   _id:('636d2cd4a943744050f9ef14'),
@@ -22,8 +22,8 @@ let users=[{
     email: "lailajalil@gmail.com",
     password: "Aprobado2",
     code: "aj7h57ow",
-    verified: true, 
-    logged: true,
+    verified: false, 
+    logged: false,
 
 },
 {  
@@ -36,8 +36,8 @@ let users=[{
     email: "joaquingambra@gmail.com",
     password: "Aprobado1",
     code: "agkuu4yy",
-    verified: true, 
-    logged: true,
+    verified: false, 
+    logged: false,
 },
 {
     _id:('636d2cd4a943744050f9ef16'),
@@ -49,8 +49,8 @@ let users=[{
     email: "feric.rodriguez@gmail.com",
     password: "Chau1234",
     code: "w8b6y3m2",
-    verified: true, 
-    logged: true,
+    verified: false, 
+    logged: false,
 
 }
 
