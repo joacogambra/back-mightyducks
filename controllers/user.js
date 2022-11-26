@@ -2,90 +2,30 @@
 const User = require('../models/User')
 const bcryptjs = require('bcryptjs') //de esta libreria vamos a utilizar el método hashSync para encriptar la contraseña
 const crypto = require('crypto')//de este modulo vamos a requerir el método randomBytes
-// const accountVerificationEmail = require('./accountVerificationEmail')
+const accountVerificationEmail = require('./accountVerificationEmail')
 const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse } = require('../config/responses') 
 const jwt = require('jsonwebtoken')
 
+
 const controller = {
-    create : async (req,res,next) =>{
+    signUp : async (req,res,next) =>{
         let {name, lastName, photo, age, email, password}= req.body
+        let role = "user"
         let verify= false
         let logged= false
-        let code= crypto.randomBytes(10).toString('hex')
+        let code= crypto.randomBytes(15).toString('hex')
         password= bcryptjs.hashSync(password, 10)
-
         try{
             await User.create({
-                name, lastName, photo, age, email, password
+                name, lastName, photo, age, email, password, role, verify, logged, code
             })
             await accountVerificationEmail(email, code)
-            return userSignedUpResponse
+            return userSignedUpResponse (req, res)
         }catch(error){
             next(error)
         }
 
     },
-    // read: async(req,res)=>{
-    //     try{
-    //         let todos = await User.find()
-    //         res.status(200).json({
-    //             response:todos,
-    //             success:true,
-    //             message:'user found correctly'
-    //         })
-    //     }catch(error){
-    //         res.status(400).json({
-    //             success:false,
-    //             message:error.message
-    //         })
-    //     }
-    // },
-    // update: async(req,res)=>{
-    //     let {id} = req.params
-    //     try{
-    //         let uno = await User.findOneAndUpdate({_id:id},req.body, {new:true})
-    //         // el metodo precisa 3 cosas:
-    //             // dato que tiene que buscar(coincidir id)
-    //             // dato que quiero modificar
-    //             //obj que habilita el reemplazo del documento
-    //             // new:true reemplaza, new:false no re-escribe al anterior
-    //         if(uno){
-    //             res.status(200).json({
-    //                 id:uno._id,
-    //                 success:true,
-    //                 message:'user modified correctly'
-    //             })
-    //         }else{
-    //             res.status(404).json({
-    //                 success:false,
-    //                 message:'error 404 not found'
-    //             })
-    //         }
-    //     }catch(error){
-    //         res.status(400).json({
-    //             success:false,
-    //             message:'user not found'
-    //         })
-    //     }
-    // },
-    // destroy: async(req,res)=>{
-    //     let{id}=req.params
-    //     //let{name}=req.params
-    //     try{
-    //         let uno  = await User.findOneAndDelete({_id:id})
-    //         res.status(200).json({
-    //             id:uno._id,
-    //             //name:uno.name,
-    //             success:true,
-    //             message:'user deleted correctly'
-    //         })
-    //     }catch{
-    //         res.status(404).json({
-    //             success:false,
-    //             message:'error 404 not found'
-    //         })
-    //     }
-    // },
     verify: async(req,res,next) => {
         //método para que un usuario verifique su cuenta
         //requiere por params el código a verificar
@@ -98,7 +38,7 @@ const controller = {
         try {
             let user = await User.findOneAndUpdate({code:code}, { verified : true}, {new:true})
         if (user){
-            return req.redirect('http://localhost:3000/home')
+            return res.redirect('http://localhost:3000/home')
         }
             return userNotFoundResponse(req, res)
 
