@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const  userExistsResponse  = require("../config/responses");
+const  {userExistsResponse}  = require("../config/responses");
 
 async function accountExistsSignUp(req, res, next) {
     
