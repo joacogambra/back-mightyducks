@@ -99,7 +99,7 @@ const controller = {
     },
     me: async(req,res) => { 
         let { id } = req.params
-       console.log(req)
+
        try {
            let user = await User.findOne({_id: id}) 
            console.log(user);
@@ -122,9 +122,10 @@ const controller = {
    update: async(req,res)=>{
     let update = req.body
     let { id } = req.params
-    console.log(req.body);
+    console.log(req.body)
     try {
-        let user = await User.findOneAndUpdate(id, update, {new:true})
+        let user = await User.findByIdAndUpdate(id, update, {new:true})
+        console.log(user);
         if (user) {
             res.status(200).json({
                 response: user,
