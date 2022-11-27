@@ -27,14 +27,9 @@ const controller = {
 
     },
     verify: async(req,res,next) => {
-        //método para que un usuario verifique su cuenta
-        //requiere por params el código a verificar
+      
         const { code }= req.params
-        //busca un usuario que coincida el código
-        
-        //y cambia verificado de false a true
-            //si tiene éxito debe redirigir a alguna página (home, welcome, login)
-            //si no tiene éxito debe responder con el error
+ 
         try {
             let user = await User.findOneAndUpdate({code:code}, { verified : true}, {new:true})
         if (user){
@@ -50,24 +45,18 @@ const controller = {
     signIn: async(req,res,next) => {
         let { password }= req.body
         let { user } = req
-      
-        //método para que un usuario inicie sesión
-        //luego de pasar por todas las validaciones:
-            //desestructura la contraseña y el objeto user que vienen en el req
-            //compara las contraseñas
-                //si tiene éxito debe generar y retornar un token y debe redirigir a alguna página (home, welcome)
-                    //además debe cambiar online de false a true
-                //si no tiene éxito debe responder con el error
+        console.log(user);
         try {
             let verifyPassword = bcryptjs.compareSync( password, user.password)
             if (verifyPassword){
-                await User.findOneAndUpdate({ id: user.id },{ logged: true }, {new: true})
+               const usuario= await User.findOneAndUpdate({ email: user.email },{ logged: user.logged = true}, {new: true})
+                console.log(usuario)
                 let token = jwt.sign(
-                    {
-                        name: user.name,
-                        lastName: user.lastName,
-                        photo: user.photo,
-                        logged: user.logged,
+                    {   _id: usuario._id,
+                        name: usuario.name,
+                        lastName: usuario.lastName,
+                        photo: usuario.photo,
+                        logged: usuario.logged,
                     },
                     process.env.KEY_JWT,
                     {expiresIn: 60 * 60 * 24}
@@ -75,10 +64,11 @@ const controller = {
                 return res.status(200).json({
                     response: {user, token},
                     success: true,
-                    message: 'Welcome' + user.name +'!!'
+                    message: 'Welcome ' + user.name +'!!'
 
                 })               
             }
+
             return invalidCredentialsResponse(req,res)
 
 
@@ -88,13 +78,17 @@ const controller = {
     },
     signInWithToken: async(req,res,next) => {
         let {user}= req
-        //método para que un usuario que ya inicio sesión no la pierda al recargar
-        //solo para usuarios registrados en nuestra app (social loguin se maneja en front)
-        //luego de pasar por todas las validaciones:
-            //debe responder con los datos del usuario
         try {
             return res.json({
-               response: {user},
+               response: {
+                user:{
+                    id: user._id,
+                    name: user.name,
+                    lastName: user.lastName,
+                    photo: user.photo,
+                    role: user.role
+                }
+               },
                success: true,
                message: 'Welcome' + user.name +'!!'
             
@@ -103,6 +97,51 @@ const controller = {
             next(error)
         }
     },
+    me: async(req,res) => { 
+        let { id } = req.params
+
+       try {
+           let user = await User.findOne({_id: id}) 
+           console.log(user);
+           if (user) {
+               res.status(200).json({
+                   response: user,
+                   success: true,
+                   message: "Nice profile"
+               })
+           } else {
+            userNotFoundResponse(req,res)
+           }            
+       } catch(error) {
+           res.status(400).json({
+               success: false,
+               message: error.message
+           })
+       }        
+   },
+   update: async(req,res)=>{
+    let update = req.body
+    let { id } = req.params
+    console.log(req.body)
+    try {
+        let user = await User.findByIdAndUpdate(id, update, {new:true})
+        console.log(user);
+        if (user) {
+            res.status(200).json({
+                response: user,
+                success: true,
+                message: "Your profile was updated!"
+            })
+        }     
+    } catch(error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+    }        
+
+
+},
 
 }
 
