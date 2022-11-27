@@ -62,7 +62,7 @@ const accountVerificationEmail = async (mailNewUser,codeCrypto) => {
                 console.error(error)
                 return
             }
-            console.log('Email sent')
+            console.log('Email for verification sent')
         }
     )
 }
