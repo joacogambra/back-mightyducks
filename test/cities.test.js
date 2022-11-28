@@ -18,7 +18,20 @@ describe('GET /cities', function(){
             }) 
     })
 })
-
+describe("DELETE /cities:id", function () {
+    it('delete one city', function (done) {
+      const id = '6384408f1969fbddf6fb6b9a'
+      request(app)
+        .delete(`/cities/${id}`)
+        .expect(200)
+        .end((error, res) => {
+            if(error){
+                return done(error)
+            }
+             done()
+        }) 
+    })
+  })
 /*describe('POST /cities',function(){
     it('name is a string',function (done){
         request(app)
