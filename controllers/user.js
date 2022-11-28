@@ -81,6 +81,7 @@ const controller = {
         console.log(user);
         try {
             return res.json({
+
                response: {
                 user:{
                     id: user.id,
@@ -89,11 +90,11 @@ const controller = {
                     photo: user.photo,
                     role: user.role
                 }
-               },
-               success: true,
+                }success: true,
                message: 'Welcome' + user.name +'!!'
-            
-            })
+               },
+               })
+               
         } catch(error) {
             next(error)
         }

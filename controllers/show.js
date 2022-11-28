@@ -54,17 +54,20 @@ create: async (req, res)=>{
     catch(error){
         res.status(400).json({
             success:false,
-            message: "Couldn't create the Show, you must be logged in"
+            message: "Couldn't create the Show, you must be logged in",
+            message: error.message
         })
      }
     
     },
     update: async(req,res)=>{
-        let update = req.body
+
         console.log(req.body);
-        let  id  = req.params
+         let  id  = req.params
+        console.log(req.body);
+ 
         try {
-            let shows = await Show.find(id, update, {new:true})
+            let shows = await Show.findOneAndUpdate(req.params, req.body, {new:true})
             if (shows) {
                 res.status(200).json({
                     response: shows,
