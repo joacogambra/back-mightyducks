@@ -5,25 +5,26 @@ const request = require('supertest')
 
 
 
-/* describe('GET /api/hotels/?name=', function () {
+//  describe('GET /api/hotels/?name=', function () {
 
-    it('404 hotel not found with filter', function (done) {
-        request(app)
-            .get('/api/hotels/?name=rgzg')
-            .expect(res=>{
-                assert.equal(res.status==404, '404')
+//     it('404 hotel not found with filter', function (done) {
+//         request(app)
+//             .get('/api/hotels/?name=rgzg')
+//             .expect(res=>{
+//                 assert.equal(res.status==404, '404')
                 
-            })
-            .end(function (error, res){
-                if (error) {
-                    return done(error)
-                }
-                done()
-                })
-            })
+//             })
+//             .send("No encontrado")
+//             .end(function (error, res){
+//                 if (error) {
+//                     return done(error)
+//                 }
+//                 done()
+//                 })
+//             })
 
-    })
-    describe('POST /api/hotels/', function () {
+//     })
+ describe('POST /api/hotels/', function () {
 
         it('The hotel was created successfully', function (done) {
             request(app)
@@ -47,4 +48,55 @@ const request = require('supertest')
                     })
                 })
     
-        })*/
+        })
+        describe("PATCH,/api/hotels/", function () {
+
+
+            it("Update exitoso ", function (done) {
+                let token =
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzgyMWI2M2U5ZDgyMDllZDgwMTk4YmEiLCJuYW1lIjoiUGVwZSIsImxhc3ROYW1lIjoiUHJ1ZWJhIiwicGhvdG8iOiJodHRwczovL2VuY3J5cHRlZC10Ym4wLmdzdGF0aWMuY29tL2ltYWdlcz9xPXRibjpBTmQ5R2NRRVVHR1dNV2R1S2xUbVV0Tk5VeHpzNTBNNm1JZGdwY05haHcmdXNxcD1DQVUiLCJsb2dnZWQiOnRydWUsImlhdCI6MTY2OTYxNjkyMSwiZXhwIjoxNjY5NzAzMzIxfQ.sphEkvLyb3FRc7hck2Suof2lHn2UpenE3-Ooxgprm_Y"
+          
+          
+          
+               request(app)
+                .patch("/api/hotels/636c491ec1f6efc7a7e0e992")
+                .send({
+                  "name": "Hotel updated",
+                })
+                .auth(token,{type:"bearer"})
+                .expect((response) => {
+                  assert.equal(response.status, 200);
+                })
+                .end(function (err, res) {
+                  if (err) {
+                    return done(err);
+                  }
+                  done();
+                });
+            });
+          });
+          describe("DELETE,/api/hotels/", function () {
+
+
+            it("Borrado", function (done) {
+                let token =
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzgyMWI2M2U5ZDgyMDllZDgwMTk4YmEiLCJuYW1lIjoiUGVwZSIsImxhc3ROYW1lIjoiUHJ1ZWJhIiwicGhvdG8iOiJodHRwczovL2VuY3J5cHRlZC10Ym4wLmdzdGF0aWMuY29tL2ltYWdlcz9xPXRibjpBTmQ5R2NRRVVHR1dNV2R1S2xUbVV0Tk5VeHpzNTBNNm1JZGdwY05haHcmdXNxcD1DQVUiLCJsb2dnZWQiOnRydWUsImlhdCI6MTY2OTYxNjkyMSwiZXhwIjoxNjY5NzAzMzIxfQ.sphEkvLyb3FRc7hck2Suof2lHn2UpenE3-Ooxgprm_Y"
+                  
+               request(app)
+                .patch("/api/shows/63840fb96f9c03f3204a0812")
+                .send({
+                  "name": "Hotel deleted",
+                })
+                .auth(token,{type:"bearer"})
+                .expect((response) => {
+                  assert.equal(response.status, 200);
+                })
+                .end(function (err, res) {
+                  if (err) {
+                    return done(err);
+                  }
+                  done();
+                });
+            });
+          });
+          
