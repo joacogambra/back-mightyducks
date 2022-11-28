@@ -5,12 +5,12 @@ let validator = require('../middlewares/validator')
 let passport = require('../config/passport')
 
 
-router.post('/', passport.authenticate('jwt', { session: false }), validator(schema), create)
-router.put('/:id',passport.authenticate('jwt', { session: false }),update)
+router.post('/', validator(schema), create)
+router.put('/:id',passport.authenticate('jwt',{session: false}), validator(schema),update)
 
 router.route('/')
     .get(read)
-router.route('/:id')
+router.route('/:id',passport.authenticate('jwt',{session: false}))
     .delete(destroy)
 
 
