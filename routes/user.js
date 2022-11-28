@@ -27,5 +27,6 @@ router.post('/token',passport.authenticate("jwt",{session:false}), mustsignin, s
 router.get('/me/:id', me)
 router.patch('/me/:id', validator(schemaEdit), update)
 
-
+// passport.authenticate('jwt', { session:false }), como middleware
+// entre el llamado (ruta) y el controlador
 module.exports = router;
