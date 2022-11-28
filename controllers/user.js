@@ -78,11 +78,12 @@ const controller = {
     },
     signInWithToken: async(req,res,next) => {
         let {user}= req
+        console.log(user);
         try {
             return res.json({
                response: {
                 user:{
-                    id: user._id,
+                    id: user.id,
                     name: user.name,
                     lastName: user.lastName,
                     photo: user.photo,
