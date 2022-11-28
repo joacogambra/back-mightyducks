@@ -4,6 +4,7 @@ const Itinerary = require('../models/Itinerary')
 const controller ={
     read: async(req,res)=>{
         let query = {}
+        console.log(query);
         if (req.query.userId) {
             query = { userId: req.query.userId };
           }
@@ -48,6 +49,7 @@ const controller ={
     },
     update: async(req,res)=>{
         let {id} = req.params
+        console.log(id);
         try{
             let uno = await Itinerary.findOneAndUpdate({_id:id},req.body, {new:true})
             if(uno){
