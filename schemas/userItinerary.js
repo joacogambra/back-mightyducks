@@ -10,7 +10,7 @@ const schema = joi.object({
     description:joi.string().required(),
     price:joi.number().required(),
     duration:joi.number().required().min(1).message({
-        'any.required':'Need three URLs',
+        'any.required':'Duration is required field',
         'number.min':'Minimum  duration is 1 hour'
     }),
     userId:joi.string().required()
