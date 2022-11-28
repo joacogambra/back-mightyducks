@@ -6,7 +6,7 @@ let passport = require('../config/passport')
 
 
 router.post('/', validator(schema), create)
-router.put('/:id',passport.authenticate('jwt',{session: false}), validator(schema),update)
+router.put('/:id', validator(schema),update)
 
 router.route('/')
     .get(read)
