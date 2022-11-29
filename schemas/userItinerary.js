@@ -13,7 +13,8 @@ const schema = joi.object({
         'any.required':'Duration is required field',
         'number.min':'Minimum  duration is 1 hour'
     }),
-    userId:joi.string().required()
+    userId:joi.string().required(),
+    likes: joi.array().any(),
 })
 
 module.exports = schema
