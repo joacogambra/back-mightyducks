@@ -4,6 +4,7 @@ let schema = require('../schemas/userItinerary')
 let validator = require('../middlewares/validator')
 let passport = require('../config/passport')
 const joi = require('joi')
+let {reactions} = require('../controllers/reactions')
 
 
 router.post('/',validator(schema), create)
@@ -12,7 +13,9 @@ router.put('/:id', passport.authenticate('jwt',{session: false}),validator(schem
 router.route('/')
     .get(read)
 
-router.delete("/:id", destroy);
+router.delete("/:id", destroy)
+
+router.patch('/reactions/:itineraryId', reactions)
 
 
 module.exports = router;

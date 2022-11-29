@@ -7,6 +7,7 @@ const schema = new mongoose.Schema({
         price: {type: Number, required:true},
         duration: {type: Number, required:true},
         userId: {type: mongoose.Types.ObjectId, ref:'users', required:true},
+        likes:{type:Array}       
 })
 
 const Itinerary = mongoose.model('itineraries',schema)
