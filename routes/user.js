@@ -13,11 +13,6 @@ let passport= require('../config/passport')
 // desestructuro para traer los metodos que necesito enrrutar
 let { signUp, signIn, signOut ,verify, signInWithToken, me, update} = require('../controllers/user')
 
-//utilizo el metodo route para agregar a la ruta
-//concateno todas las palabras y obtengo la ruta total
-// para controlar este metodo
-// router.post('/')
-
 router.get('/verify/:code', verify)
 
 router.post('/sign-up',validator(scheme),accountExistsSignUp,signUp)
@@ -27,6 +22,5 @@ router.post('/token',passport.authenticate("jwt",{session:false}), mustsignin, s
 router.get('/me/:id', me)
 router.patch('/me/:id', validator(schemaEdit), update)
 
-// passport.authenticate('jwt', { session:false }), como middleware
-// entre el llamado (ruta) y el controlador
+
 module.exports = router;
