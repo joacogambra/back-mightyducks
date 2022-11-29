@@ -3,17 +3,16 @@ let {create, read, one, update, destroy} = require('../controllers/city')
 let scheme = require('../schemas/schemeCity')
 let validator = require ('../middlewares/validator')
 const joi = require('joi')
+let passport = require('../config/passport')
 
+router.post('/', passport.authenticate("jwt", { session: false }), validator(scheme) ,create)
 router.route('/')
-    .post(validator(scheme),create)
     .get(read)
 
 router.get('/:id',one)
 router.put('/:id',update)
 router.route('/:id')
     .delete(destroy)
-//    .get(one)
-//     .put(update)
     
 
 module.exports = router;
