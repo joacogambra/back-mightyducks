@@ -8,7 +8,6 @@ const controller = {
             let hotel = await Hotel.select("photo").slice(7)
             let city = await City.select("photo").slice(7)
             let photos = hotel.join(city)
-            console.log(photos);
             if (hotel,city){
                 res.status(200).json({
                     response: photos,

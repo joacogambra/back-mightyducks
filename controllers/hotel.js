@@ -30,7 +30,7 @@ const controller = {
     let order= {}
     let id = {}
     
-    console.log(query)
+   
     if (req.query.name){
         query={ name: {$regex:`${req.query.name}`, $options:'i' }}
         
@@ -77,7 +77,7 @@ const controller = {
     },   
     one: async(req,res) => { 
          let { id } = req.params
-        console.log(req.params.id)
+       
         try {
             let hotels = await Hotel.findById(id).populate({path:"userId",  select: "name photo -_id"} )
             if (hotels) {
@@ -102,7 +102,7 @@ const controller = {
     update: async(req,res)=>{
         let update = req.body
         let { id } = req.params
-        console.log(req.body);
+        
         try {
             let hotels = await Hotel.findOneAndUpdate(id, update, {new:true})
             if (hotels) {

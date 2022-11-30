@@ -4,7 +4,7 @@ const controller={
 
         read: async (req, res)=>{
             let  query  = {}
-            console.log(query)
+            
     
             if (req.query.hotelId){
 
@@ -43,7 +43,7 @@ const controller={
     }        
 },
 create: async (req, res)=>{
-   console.log(req.body);
+   
     
     try{ 
       let new_show = await Show.create(req.body)
@@ -65,9 +65,9 @@ create: async (req, res)=>{
     },
     update: async(req,res)=>{
 
-        console.log(req.body);
+       
          let  id  = req.params
-        console.log(req.body);
+      
  
         try {
             let shows = await Show.findOneAndUpdate(req.params, req.body, {new:true})
