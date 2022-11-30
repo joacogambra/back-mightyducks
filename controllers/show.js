@@ -3,8 +3,8 @@ const Show= require('../models/Show')
 const controller={
 
         read: async (req, res)=>{
-           
             let  query  = {}
+            
     
             if (req.query.hotelId){
 
@@ -13,7 +13,10 @@ const controller={
             if (req.query.userId){
                 query = { userId : req.query.userId }
              }
-
+             if (req.query._id){
+                query = { _id : req.query._id }
+             }
+            
                try{ 
               let shows = await Show.find(query, '-userId')
               ///select especifica que campos incluir o no, con el menos
@@ -40,7 +43,7 @@ const controller={
     }        
 },
 create: async (req, res)=>{
-   console.log(req.body);
+   
     
     try{ 
       let new_show = await Show.create(req.body)
@@ -54,17 +57,20 @@ create: async (req, res)=>{
     catch(error){
         res.status(400).json({
             success:false,
-            message: "Couldn't create the Show, you must be logged in"
+            message: "Couldn't create the Show, you must be logged in",
+            message: error.message
         })
      }
     
     },
     update: async(req,res)=>{
-        let update = req.body
-        console.log(req.body);
-        let  id  = req.params
+
+       
+         let  id  = req.params
+      
+ 
         try {
-            let shows = await Show.find(id, update, {new:true})
+            let shows = await Show.findOneAndUpdate(req.params, req.body, {new:true})
             if (shows) {
                 res.status(200).json({
                     response: shows,
@@ -112,7 +118,8 @@ res.status(400).json({
     success: false,
     message: error.message
 })
-}        
+}    
+    
 
 
 }

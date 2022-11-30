@@ -45,12 +45,12 @@ const controller = {
     signIn: async(req,res,next) => {
         let { password }= req.body
         let { user } = req
-        console.log(user);
+       
         try {
             let verifyPassword = bcryptjs.compareSync( password, user.password)
             if (verifyPassword){
                const usuario= await User.findOneAndUpdate({ email: user.email },{ logged: user.logged = true}, {new: true})
-                console.log(usuario)
+              
                 let token = jwt.sign(
                     {   _id: usuario._id,
                         name: usuario.name,
@@ -59,7 +59,7 @@ const controller = {
                         logged: usuario.logged,
                     },
                     process.env.KEY_JWT,
-                    {expiresIn: 60 * 60 * 24}
+                    {expiresIn: 604800}
                 )
                 return res.status(200).json({
                     response: {user, token},
@@ -78,22 +78,23 @@ const controller = {
     },
     signInWithToken: async(req,res,next) => {
         let {user}= req
-        console.log(user);
+      
         try {
             return res.json({
-               response: {
+                response: {
                 user:{
                     id: user.id,
                     name: user.name,
                     lastName: user.lastName,
                     photo: user.photo,
                     role: user.role
-                }
-               },
+                    }
+                },
                success: true,
                message: 'Welcome' + user.name +'!!'
             
             })
+
         } catch(error) {
             next(error)
         }
@@ -103,7 +104,7 @@ const controller = {
 
        try {
            let user = await User.findOne({_id: id}) 
-           console.log(user);
+          
            if (user) {
                res.status(200).json({
                    response: user,
@@ -123,10 +124,10 @@ const controller = {
    update: async(req,res)=>{
     let update = req.body
     let { id } = req.params
-    console.log(req.body)
+   
     try {
         let user = await User.findByIdAndUpdate(id, update, {new:true})
-        console.log(user);
+      
         if (user) {
             res.status(200).json({
                 response: user,
