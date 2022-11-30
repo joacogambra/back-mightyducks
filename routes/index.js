@@ -16,7 +16,7 @@ router.use('/api/hotels',hotel)
 router.use('/api/hotels/:id ',hotel)
 router.use('/api/shows?hotelId=id',show)
 router.use('/api/shows',show)
-router.use('/reactions', reactions)
+router.use('/reactions',reactions)
 
 
 
