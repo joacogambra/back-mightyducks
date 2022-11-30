@@ -7,6 +7,8 @@ let itinerary = require('./itinerary')
 let hotel= require('./hotel')
 let show = require('./show')
 let comments= require('./comment')
+let reactions = require('./reactions')
+
 
 // obligo al enrrutador principal que use "/user" para controlar las rutas de user
 router.use('/api/auth',user)
@@ -17,7 +19,7 @@ router.use('/api/hotels/:id ',hotel)
 router.use('/api/shows?hotelId=id',show)
 router.use('/api/shows',show)
 router.use('/api/comments', comments)
-
+router.use('/reactions', reactions)
 
 
 
