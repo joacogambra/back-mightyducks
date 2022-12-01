@@ -45,12 +45,12 @@ const controller = {
     signIn: async(req,res,next) => {
         let { password }= req.body
         let { user } = req
-       
+      
         try {
             let verifyPassword = bcryptjs.compareSync( password, user.password)
             if (verifyPassword){
                const usuario= await User.findOneAndUpdate({ email: user.email },{ logged: user.logged = true}, {new: true})
-              
+                console.log(usuario)
                 let token = jwt.sign(
                     {   _id: usuario._id,
                         name: usuario.name,
@@ -59,7 +59,7 @@ const controller = {
                         logged: usuario.logged,
                     },
                     process.env.KEY_JWT,
-                    {expiresIn: 604800}
+                    {expiresIn: 60 * 60 * 24}
                 )
                 return res.status(200).json({
                     response: {user, token},
