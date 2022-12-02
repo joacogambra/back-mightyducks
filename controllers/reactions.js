@@ -54,23 +54,7 @@ const controller ={
         }          
     },
     getReactions: async (req, res) => {
-        let query = {}
-        if (req.query.itineraryId) {
-            query = {...query, itineraryId: req.query.itineraryId }
-          }
-        try{
-            let todos = await Reactions.find(query)
-            res.status(200).json({
-                response:todos,
-                success:true,
-                message:'Reactions found correctly'
-            })
-        }catch(error){
-            res.status(400).json({
-                success:false,
-                message:error.message
-            })
-        }
+       
       },
 }
 module.exports = controller
