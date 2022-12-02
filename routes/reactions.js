@@ -3,7 +3,7 @@ let { create , reactions , getReactions } = require ('../controllers/reactions')
 let passport = require('../config/passport')
 
 router.post('/', create)
-router.patch('/',passport.authenticate("jwt", { session: false }), reactions)
+router.put('/',passport.authenticate("jwt", { session: false }), reactions)
 router.get('/',passport.authenticate("jwt", { session: false }), getReactions)
 
 module.exports= router;
