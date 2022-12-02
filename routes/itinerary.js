@@ -15,7 +15,5 @@ router.route('/')
 
 router.delete("/:id", destroy)
 
-router.patch('/reactions/:itineraryId', reactions)
-
 
 module.exports = router;
