@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
         name: {type: String, required:true},
         icon: {type: String, required:true},
         iconBack: {type: String, required:true},
-        userId: {type: mongoose.Types.ObjectId, ref:'users', required:true},
+        userId: [{type: mongoose.Types.ObjectId, ref:'users'}],
 })
 
 const Reactions = mongoose.model('reactions',schema)
