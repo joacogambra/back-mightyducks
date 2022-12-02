@@ -7,10 +7,8 @@ const schemaComments= joi.object({
                     "string.min": "At least 3 characters",
                     "string.max": "Max 140 characters", 
                 }),
-    photo: joi.string().uri().messages({
-                    "string.empty": "Field photo is required",
-                    "string.uri": "Invalid URL",
-                  }),  
+    showId: joi.any(),
+    itineraryId: joi.any()
     
 })
 
