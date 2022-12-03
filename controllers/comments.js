@@ -9,27 +9,27 @@ const controller ={
     
      let {user}= req
      let query= {}
-        console.log(req.body)
+       
     
      try {
         let model 
-        if (req.body.showId){
-            query= { _id : req.body.showId }
+        if (req.query.showId){
+            query= { _id : req.query.showId }
             model= await Show.findOne(query)
          }
-         else if (req.body.itineraryId){
+         else if (req.query.itineraryId){
     
-            query = { _id : req.body.itineraryId}
+            query = { _id : req.query.itineraryId}
             model= await Itinerary.findOne(query)
          }
 
          if (model){
-
-         let new_comment=  await Comment.create({comment:req.body.comment, userId: user.id , photo: user.photo})
-         console.log(model)
+        
+         let new_comment=  await Comment.create({comment:req.body.comment, userId: user.id , photo: user.photo, name:user.name})
+          
             model.comment.push(new_comment._id)
             model.save()
-
+            console.log(new_comment);
             res.status(201).json({
                 
                 response: new_comment,
@@ -55,7 +55,7 @@ const controller ={
     read: async (req,res) =>{
        let query = {}
        let model
-       console.log(req.query.showId)
+
     //  if (req.query.itineraryId){
 
     //     query = { 
@@ -75,7 +75,7 @@ const controller ={
              }
         if(model){
        
-        let newModel = await model.populate({path: 'comment.userId', select: 'name, photo'})
+        let newModel = await model.populate({path: 'comment.userId', select: 'name, photo, id'})
             // let allComments= model.comment.sort({updatedAt: -1}).populate({path:"userId",  select: "name"})
        
                 res.status(201).json({
