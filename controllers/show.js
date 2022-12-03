@@ -22,7 +22,7 @@ const controller={
               ///select especifica que campos incluir o no, con el menos
               //especificamos cual no
 
-          if (shows){
+          if (shows.length){
             res.status(200).json({
                 response: shows,
                 success: true,     
