@@ -3,7 +3,7 @@ const joi = require('joi')
 const schema = joi.object({
     hotelId:joi.string().required(),
     name:joi.string().required(),
-    photo:joi.array().required().items(joi.string().uri()).length(3).message({
+    photo:joi.array().required().items(joi.string().uri()).length(3).messages({
         'any.required':'Need three URLs',
         'string.uri':'Need three URLs'
     }),
@@ -15,9 +15,9 @@ const schema = joi.object({
                 "number.empty": "You must complete this field"
             }),
             
-    date:joi.number().required().min(1).message({
+    date:joi.date().required().messages({
         'any.required':'Duration is required field',
-        'number.min':'Minimum  duration is 1 hour'
+        
     }),
     userId:joi.string().required()
 })
