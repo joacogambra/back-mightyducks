@@ -8,6 +8,7 @@ const schema= new mongoose.Schema({
     date: {type: Date, required:true},
     userId:{type:mongoose.Types.ObjectId, ref: 'users', required:true},
     comment:[{type:mongoose.Types.ObjectId, ref:'comments', }]
+
 })
 // para definir un modelo es necesario el nombre de la collection y schema de datos
 const Show= mongoose.model('shows',schema)
