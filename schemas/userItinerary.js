@@ -14,7 +14,6 @@ const schema = joi.object({
         'number.min':'Minimum  duration is 1 hour'
     }),
     userId:joi.string().required(),
-    likes: joi.array(),
 })
 
 module.exports = schema

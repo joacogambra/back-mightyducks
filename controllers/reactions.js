@@ -19,32 +19,30 @@ const controller ={
         }
     },
     reactions: async (req,res) =>{
-        //necesito el id del usuario que da y saca el like y evento like-dislike
-        const {_id} = req.body
-        console.log(_id);
-        // lo saco del passport
-        let {id} = req.user
-        console.log(id);
-        let {itineraryId} = req.params
+        let query = {}
+        if(req.query.name){
+            query = {name: req.query.name}
+        }
+        if(req.query.itineraryId){
+            query = {itineraryId: req.query.itineraryId}
+        }
+        let userId = req.user.id
         try{
-            let one = await Itinerary.findOne({_id: itineraryId})
-            if(one && one.likes.includes(id)){
-                one.likes.pull(id)
+            let one = await Reactions.findOne(query)
+            if(one.userId.includes(userId)){
+                one.userId.pull(userId)
                 await one.save()
+               // await Itinerary.findOneAndUpdate({_id:id}, {$pull:{likes:userId}}, {new:true})
                 res.status(200).json({
                     message:'disliked',
                     success:true
                 })
-            }else if(!one.likes.includes(id)){
-                one.likes.push(id)
+            }else{
+                one.userId.push(userId)
                 await one.save()
+                // await Itinerary.findOneAndUpdate({_id:id}, {$push:{likes:userId}}, {new:true})
                 res.status(200).json({
                     message:'liked',
-                    success:true
-                })
-            }else{
-                res.status(404).json({
-                    message:'not found',
                     success:true
                 })
             }
@@ -55,5 +53,24 @@ const controller ={
             })
         }          
     },
+    getReactions: async (req, res) => {
+        let query = {}
+        if (req.query.itineraryId) {
+            query = {...query, itineraryId: req.query.itineraryId }
+          }
+        try{
+            let todos = await Reactions.find(query)
+            res.status(200).json({
+                response:todos,
+                success:true,
+                message:'Reactions found correctly'
+            })
+        }catch(error){
+            res.status(400).json({
+                success:false,
+                message:error.message
+            })
+        }
+      },
 }
 module.exports = controller
