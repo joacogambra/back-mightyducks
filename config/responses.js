@@ -47,6 +47,21 @@ function verifyResponse(req,res) {
     })
 }
 
+function ownerResponse(req, res) {
+    return res.status(401).json({
+      success: false,
+      message: 'Not the same user who generated the reaction',
+    });
+  }
+
+function notSighted(req, res) {
+    return res.status(404).json({
+      success: false,
+      message: "Could not be sighted",
+    });
+  }
+  
+
 module.exports = {
     userSignedUpResponse,
     userExistsResponse,
@@ -54,5 +69,7 @@ module.exports = {
     userSignedOutResponse,
     mustSignInResponse,
     invalidCredentialsResponse,
-    verifyResponse
+    verifyResponse,
+    ownerResponse,
+    notSighted
 }
