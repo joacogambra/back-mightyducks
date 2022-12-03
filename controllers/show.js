@@ -118,11 +118,32 @@ res.status(400).json({
     success: false,
     message: error.message
 })
+}},
+one: async(req,res) => { 
+    let { id } = req.params
+    
+   try {
+       let show = await Show.findById(id)
+       if (show) {
+           res.status(200).json({
+               response: show,
+               success: true,
+               message: "Show found successfully"
+           })
+       } else {
+           res.status(404).json({
+               success: false,
+               message: "Couldn't find Show"
+           })
+       }            
+   } catch(error) {
+       res.status(400).json({
+           success: false,
+           message: error.message
+       })
+   }        
 }    
     
-
-
-}
 }
 
 

@@ -77,7 +77,7 @@ const controller ={
        
         let newModel = await model.populate({path: 'comment.userId', select: 'name, photo'})
             // let allComments= model.comment.sort({updatedAt: -1}).populate({path:"userId",  select: "name"})
-           console.log(newModel) 
+       
                 res.status(201).json({
                     response: newModel,
                     message: 'Got all comments',
@@ -103,8 +103,8 @@ const controller ={
   update: async (req,res)=>{
     let update = req.body
     let{ id}= req.params
-    console.log("estoy en el controller")
-   console.log(id)
+  
+
     try{
         let commentUpdate= await Comment.findByIdAndUpdate(id, update, {new:true})
         if (commentUpdate){

@@ -30,43 +30,40 @@ const controller = {
     let order= {}
     let id = {}
     
-   
-    if (req.query.name){
-        query={ name: {$regex:`${req.query.name}`, $options:'i' }}
-        
-    } 
-    // regex es un operador que sirve para buscar palabras equivalentes, options i es 
-            //para que los dos esten en lowercase and
-    if (req.query.order){
-       
-    order={ capacity: req.query.order} 
-
-    }
-    if (req.query.userId){
-        query= { userId: req.query.userId}
-    }
+    try{ 
+        if (req.query.name){
+            query={ name: {$regex:`${req.query.name}`, $options:'i' }}
+            
+        } 
+        // regex es un operador que sirve para buscar palabras equivalentes, options i es 
+                //para que los dos esten en lowercase and
+        if (req.query.order){
+           
+        order={ capacity: req.query.order} 
     
-   
-       try{ 
+        }
+        if (req.query.userId){
+            query= { userId: req.query.userId}
+        }
       let hotels = await Hotel.find(query, '-userId').sort(order)
 
-      if (hotels.length){
+      if (hotels.length>0){
         res.status(200).json({
             response: hotels,
             success: true,     
             message: "hotels are filtered successfully"
         })
-    } else {
-        res.status(404).json({
-            response: [],
-            success: false,
-            message: "error 404, not found"
-
-        })
-    }
-
+    } 
     
-}
+    else{
+     
+        res.status(404).json({
+            response: res.message,
+            message: 'Comment Could Not Be Created',
+            succes: false,
+        })
+
+    }}
     catch(error){
         res.status(400).json({
             success:false,
