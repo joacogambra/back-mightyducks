@@ -27,3 +27,4 @@ npx express-generator --view=ejs .
 ```
 
 ![image](https://user-images.githubusercontent.com/114600775/201817476-a70e14e1-9ea4-4be3-bbe0-605c4a5f20c3.png)
+![image](https://user-images.githubusercontent.com/114600775/205766031-f024469c-a0f9-4fea-a06d-bd0c3e668a59.png)
