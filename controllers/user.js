@@ -1,11 +1,9 @@
-
 const User = require('../models/User')
 const bcryptjs = require('bcryptjs') //de esta libreria vamos a utilizar el método hashSync para encriptar la contraseña
 const crypto = require('crypto')//de este modulo vamos a requerir el método randomBytes
 const accountVerificationEmail = require('./accountVerificationEmail')
 const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse, userSignedOutResponse } = require('../config/responses')
 const jwt = require('jsonwebtoken')
-
 
 const controller = {
     signUp: async (req, res, next) => {
@@ -44,6 +42,7 @@ const controller = {
             let verifyPassword = bcryptjs.compareSync(password, user.password)
             if (verifyPassword) {
                 const usuario = await User.findOneAndUpdate({ email: user.email }, { logged: user.logged = true }, { new: true })
+                console.log(usuario)
                 let token = jwt.sign(
                     {
                         _id: usuario._id,
@@ -53,13 +52,12 @@ const controller = {
                         logged: usuario.logged,
                     },
                     process.env.KEY_JWT,
-                    { expiresIn: 604800 }
+                    { expiresIn: 60 * 60 * 24 }
                 )
                 return res.status(200).json({
                     response: { user, token },
                     success: true,
                     message: 'Welcome ' + user.name + '!!'
-
                 })
             }
             return invalidCredentialsResponse(req, res)
@@ -82,7 +80,6 @@ const controller = {
                 },
                 success: true,
                 message: 'Welcome' + user.name + '!!'
-
             })
         } catch (error) {
             next(error)

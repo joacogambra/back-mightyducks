@@ -10,5 +10,6 @@ router.patch('/:id', validator(schema), update)
 
 router.route('/:id')
     .delete(destroy)
+router.get('/:id', one)
 
 module.exports = router;

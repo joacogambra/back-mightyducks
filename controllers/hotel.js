@@ -1,5 +1,6 @@
 const { response } = require('../app')
 const Hotel = require('../models/Hotel')
+
 const controller = {
     create: async (req, res) => {
         try {
@@ -21,31 +22,34 @@ const controller = {
         let query = {}
         let order = {}
         let id = {}
-        if (req.query.name) {
-            query = { name: { $regex: `${req.query.name}`, $options: 'i' } }
-        }
-        if (req.query.order) {
-            order = { capacity: req.query.order }
-        }
-        if (req.query.userId) {
-            query = { userId: req.query.userId }
-        } try {
+        try {
+            if (req.query.name) {
+                query = { name: { $regex: `${req.query.name}`, $options: 'i' } }
+
+            }
+            if (req.query.order) {
+                order = { capacity: req.query.order }
+            }
+            if (req.query.userId) {
+                query = { userId: req.query.userId }
+            }
             let hotels = await Hotel.find(query, '-userId').sort(order)
-            if (hotels.length) {
+            if (hotels.length > 0) {
                 res.status(200).json({
                     response: hotels,
                     success: true,
                     message: "hotels are filtered successfully"
                 })
-            } else {
+            }
+            else {
                 res.status(404).json({
-                    response: [],
-                    success: false,
-                    message: "error 404, not found"
-
+                    response: res.message,
+                    message: 'Comment Could Not Be Created',
+                    succes: false,
                 })
             }
-        } catch (error) {
+        }
+        catch (error) {
             res.status(400).json({
                 success: false,
                 message: error.message
@@ -122,6 +126,7 @@ const controller = {
                 message: error.message
             })
         }
+
     }
 }
 module.exports = controller;
