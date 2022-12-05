@@ -16,18 +16,18 @@ const schemaEdit = joi.object({
     "string.uri": "Invalid URL",
   }),
   age: joi.number().messages({
-  
+
   }),
-  email: joi.string().email({minDomainSegments: 2}).messages({
+  email: joi.string().email({ minDomainSegments: 2 }).messages({
     "string.empty": "Email is required",
     "string.email": "Enter a valid email like example@mail.com",
   }),
   password: joi.string()
-                .alphanum()
-                .min(6)
-                .message({
-                'any.required': 'Please enter an alphanumeric password with min 6 characters',
-             }),
+    .alphanum()
+    .min(6)
+    .message({
+      'any.required': 'Please enter an alphanumeric password with min 6 characters',
+    }),
 });
 
 
