@@ -15,6 +15,8 @@
 | Chai  | JS testing framework | v4.3.7  |
 | Mocha  | JS test framework in nodejs      | v10.1.0  |
 | SuperTest  | Tester APIs      | v6.3.1  |
+| Nodemailer  | Module for NodeJs | v6.8.0 |
+| Passport-jwt  | Authenticator Json Web Token | v4.0.0 |
 
 ```
 Start and connect: 
