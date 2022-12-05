@@ -3,8 +3,7 @@ const chai = require('chai')
 const assert = chai.assert
 const request = require('supertest')
 
-describe('GET /cities/:id', function(){
-   
+describe('GET /cities/:id', function(){  
     it('get one city', function(done){
         let ejemplo = "636d39386f873da185c9a581"
         request(app)

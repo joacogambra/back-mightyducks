@@ -7,8 +7,7 @@ const schema= new mongoose.Schema({
     price: {type: Number, required:true},
     date: {type: Date, required:true},
     userId:{type:mongoose.Types.ObjectId, ref: 'users', required:true},
-
 })
-// para definir un modelo es necesario el nombre de la collection y schema de datos
+
 const Show= mongoose.model('shows',schema)
 module.exports = Show
