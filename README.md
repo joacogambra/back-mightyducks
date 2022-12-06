@@ -15,6 +15,8 @@
 | Chai  | JS testing framework | v4.3.7  |
 | Mocha  | JS test framework in nodejs      | v10.1.0  |
 | SuperTest  | Tester APIs      | v6.3.1  |
+| Nodemailer  | Module for NodeJs | v6.8.0 |
+| Passport-jwt  | Authenticator Json Web Token | v4.0.0 |
 
 ```
 Start and connect: 
@@ -25,3 +27,4 @@ npx express-generator --view=ejs .
 ```
 
 ![image](https://user-images.githubusercontent.com/114600775/201817476-a70e14e1-9ea4-4be3-bbe0-605c4a5f20c3.png)
+![image](https://user-images.githubusercontent.com/114600775/205766031-f024469c-a0f9-4fea-a06d-bd0c3e668a59.png)
