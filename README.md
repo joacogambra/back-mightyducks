@@ -25,6 +25,7 @@ npm run dev
 Install express:
 npx express-generator --view=ejs .
 ```
-
+####Sprint 2 y 3:
 ![image](https://user-images.githubusercontent.com/114600775/201817476-a70e14e1-9ea4-4be3-bbe0-605c4a5f20c3.png)
+#### Sprint 4 y 5:
 ![image](https://user-images.githubusercontent.com/114600775/205766031-f024469c-a0f9-4fea-a06d-bd0c3e668a59.png)
